@@ -1,4 +1,3 @@
-
 var fileQueue = [], addQueue = [];
 var totalTracks = 0, uploadedTracks = 0;
 
@@ -85,9 +84,11 @@ function updateProgress(current){
 
 function protopost(path, proto, resp, callback){
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://music-alpha.appspot.com/'+path);
+	// xhr.open('POST', 'https://music-alpha.appspot.com/'+path);
+	xhr.open("POST","https://android.clients.google.com/upsj");
 	xhr.responseType = 'arraybuffer'
-	xhr.setRequestHeader('X-Cookie', 'SID='+SID);
+	//xhr.setRequestHeader('X-Cookie', 'SID='+SID);
+	xhr.setRequestHeader("Content-Type","application/x-google-protobuf");
 	//console.log(proto.SerializeToArray())
 	var array = new Uint8Array(proto.SerializeToArray());
 	xhr.send(array.buffer);
